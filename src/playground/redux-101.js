@@ -1,12 +1,12 @@
 import { createStore } from 'Redux';
 
 // action generators - functions that return action objects
-const incrementCount = ({ incrementBy = 1} = {}) => ({
+const incrementCount = ({ incrementBy = 1 } = {}) => ({
   type: 'INCREMENT',
   incrementBy
 })
 
-const decrementCount = ({ decrementBy = 1} = {}) => ({
+const decrementCount = ({ decrementBy = 1 } = {}) => ({
   type: 'DECREMENT',
   decrementBy
 })
