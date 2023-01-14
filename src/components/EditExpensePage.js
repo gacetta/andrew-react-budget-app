@@ -1,21 +1,35 @@
-// My code:
-
 import React from "react";
-import { useLocation, useParams } from 'react-router-dom';
+import { connect } from "react-redux";
+import { useParams, useNavigate } from 'react-router-dom';
+import { editExpense } from "../actions/expenses";
+import { ExpenseForm } from "./ExpenseForm";
 
-const EditExpensePage = () => {
-  let location = useLocation();
+const EditExpensePage = (props) => {
   let { id } = useParams();
-  console.log(location);
-  console.log(id);
+  const navigate = useNavigate();
+  // console.log(id);
   return (
     <div>
-      Editing expense with id of {id}
+      <ExpenseForm 
+        expense={props.expense}
+        onSubmit={(expense) => {
+          console.log('updated: ', expense)
+          props.dispatch(editExpense(props.expense.id, expense));
+          navigate('/');
+        }}
+      />
     </div>
   )
 }
 
-export default EditExpensePage;
+const mapStateToProps = (state) => {
+  let { id } = useParams();
+  return {
+    expense: state.expenses.find((expense) => expense.id === id)
+  }
+}
+
+export const ConnectedEditExpensePage = connect(mapStateToProps)(EditExpensePage);
 
 
 // // Andrew's Code:
@@ -32,3 +46,23 @@ export default EditExpensePage;
 // }
 
 // export default EditExpensePage;
+
+
+// ATTEMPTING TO GET PROPS
+
+// const EditExpensePage = (props) => {
+//   let { id } = useParams();
+//   console.log(id);
+//   const navigate = useNavigate();
+//   return (
+//     <div>
+//       <ExpenseForm 
+//         {...props}
+//         blank={false}
+//         onSubmit={(expense)=> {
+//           props.dispatch(addExpense(expense));
+//           navigate('/');
+//         }}/>
+//     </div>
+//   )
+// }
