@@ -10,29 +10,29 @@ import './styles/styles.scss';
 
 const store = configureStore();
 
-store.subscribe(() => {
+const unsubscribe = store.subscribe(() => {
   const state = store.getState();
   const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
   console.log(visibleExpenses)
 })
 
-const waterBill = store.dispatch(addExpense({ 
-  description: 'Water Bill',
-  note: 'Water bill for January 2023',
-  amount: 4500
+store.dispatch(addExpense({ 
+  description: 'Piano',
+  note: `Steinway Model B - 6' 10.5" - MSRP $124,900`,
+  amount: 12490000
 }))
 
-const gasBill = store.dispatch(addExpense({ 
-  description: 'Gas Bill',
-  note: 'Gas bill for January 2023',
-  amount: 1000,
+store.dispatch(addExpense({ 
+  description: 'Bassoon',
+  note: 'Fox Model 680 Bassoon - $33,235',
+  amount: 3323500,
   createdAt: 1000
 }))
 
-const rentBill = store.dispatch(addExpense({ 
-  description: 'Rent',
-  note: 'Rent for January 2023',
-  amount: 100000
+store.dispatch(addExpense({ 
+  description: 'Top Of The Line Kazoo',
+  note: 'Monoprice Metal Kazoo - $6.67 on amazon',
+  amount: 667
 }))
 
 const jsx = (
