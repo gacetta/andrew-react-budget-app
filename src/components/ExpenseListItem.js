@@ -11,5 +11,3 @@ export const ExpenseListItem = ({ id, description, amount, createdAt }) => (
     <p>Created At: {createdAt}</p>
   </div>
 )
-
-// export const ConnectedExpenseListItem = connect()(ExpenseListItem);
